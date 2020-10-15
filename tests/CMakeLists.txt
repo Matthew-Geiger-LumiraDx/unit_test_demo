@@ -3,7 +3,7 @@ include_directories("${CMAKE_SOURCE_DIR}/googletest/googletest/include"
                      "${CMAKE_SOURCE_DIR}/include")
 
 add_definitions(-DTESTING)
-add_executable(test_demo test_example1.cpp "${CMAKE_SOURCE_DIR}/src/example1.cpp")
+add_executable(test_demo test_example1.cpp "${CMAKE_SOURCE_DIR}/src/example1.cpp" "${CMAKE_SOURCE_DIR}/src/LeapYearCalendar.cpp")
 
 #target_include_directories(test_demo PRIVATE "${CMAKE_SOURCE_DIR}/src")
 
