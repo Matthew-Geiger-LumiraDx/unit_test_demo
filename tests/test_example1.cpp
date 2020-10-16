@@ -37,18 +37,22 @@ TEST(Failure, Death){
     EXPECT_EXIT(deathExit(1), ::testing::ExitedWithCode(0), "Success");
 }
 
-class TypeFixtureTests : public ::testing::Test {
+class TypeFixtureParamTests : public ::testing::TestWithParam<int> {
 protected:
     LeapYearCalendar leapYearCalendar;
 };
 
-TEST_F(TypeFixtureTests, Success){
-    ASSERT_TRUE(leapYearCalendar.isLeap(2020));
+TEST_P(TypeFixtureParamTests, Parameters){
+    int year = GetParam();
+    ASSERT_TRUE(leapYearCalendar.isLeap(year));
 }
 
-TEST_F(TypeFixtureTests, Failure){
-    ASSERT_TRUE(leapYearCalendar.isLeap(2021));
-}
+INSTANTIATE_TEST_CASE_P(
+    LeapYearTests,
+    TypeFixtureParamTests,
+    ::testing::Values(
+        2020, 2021, 2022, 2023, 2024
+    ));
 
 int main(int argc, char **argv){
     testing::InitGoogleTest(&argc, argv);
